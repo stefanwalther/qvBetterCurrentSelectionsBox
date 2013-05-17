@@ -1,2 +1,0 @@
-﻿===== v1.0.0 - 05/16/2013 =====
-* Release: Initial Release v1.0.0
