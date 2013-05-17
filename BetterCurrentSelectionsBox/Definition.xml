@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ExtensionObject Label="Better Current Selections Box" Path="BetterCurrentSelectionsBox" Description="An improved current selections box." Type="object">
+
+  <PropertiesPage Version="11" File="BetterCurrentSelectionsBox.qvpp" />
+
+  <Initiate Name="Chart.Text.5.Content" Value="Feld" />
+  <Initiate Name="Chart.Text.11.Content" Value="_,#,%"/>
+  <Initiate Name="Chart.Text.12.Content" Value="Languages" />
+  <Initiate Name="Chart.Dimension.0.Field" Value="FieldName" />
+  <Initiate Name="Chart.Expression.0.0.Definition" Value="=Only($(=vSelectedLangKey))" />
+  <Initiate Name="Caption.Text" Value="Current Selections" />
+  <Initiate Name="Chart.Text.2" Value="1" />
+  <Initiate name="Chart.Text.3" Value="1" />
+  
+  <Dimension Label="Fields" TargetName="Dimension Name" Initial="FieldName" />
+  <Measurement Label="Expression"  Initial="Only($(=vSelectedLangKey))" />
+  <RefValue Initial="" Label="=GetCurrentSelections(Chr(10), ':',';',9)" />
+  <!-- 0 -->
+  <Text Label="Show Status" type="checkbox"></Text>
+  
+  <!-- 1 -->
+  <Text Label="Show Values" type="checkbox"></Text>
+  
+  <!-- 2 -->
+  <Text Label="Show Clear Icons" type="checkbox"></Text>
+  
+  <!-- 3 -->
+  <Text Label="Show Lock/Unlock Icons" type="checkbox"></Text>
+
+  <!-- 4 -->
+  <!--<Text Label="Icon Set" Type="select" Select="classic,flat" SelectLabel="Classic,Flat" Expression=""/>-->
+  <Text Label="IconSet" type="select" Select="classic,flat,batch,batchgray,eldorado,eldoradogray" SelectLabel="QlikView Classic,QlikView Flat,Batch,Batch Gray,Eldorado,Eldorado Gray"></Text>
+  
+  <!-- 5 -->
+  <Text Label="Fields" type="text"></Text>
+  
+  <!-- 6 -->
+  <Text Label="Status" type="text"></Text>
+  
+  <!-- 7 -->
+  <Text Label="Values" type="text"></Text>
+
+  <!-- 8 -->
+  <Text Label="Label Background" type="color"></Text>
+
+  <!-- 9 -->
+  <Text Label="Label Text Color" type="color"></Text>
+  
+  <!-- 10 -->
+  <Text Label="Text Color" type="color"></Text>
+  
+  <!-- 11 -->
+  <Text Label="HidePrefixes" type="text"></Text>
+  
+  <!-- 12 -->
+  <Text Label="HideFields" type="text"></Text>
+
+</ExtensionObject>
