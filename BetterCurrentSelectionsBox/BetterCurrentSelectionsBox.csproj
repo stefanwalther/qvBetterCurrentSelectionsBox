@@ -146,8 +146,6 @@
     <Content Include="Script.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="select.txt" />
-    <Content Include="Todos.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
