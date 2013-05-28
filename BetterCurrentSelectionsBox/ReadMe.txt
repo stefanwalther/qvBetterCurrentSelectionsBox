@@ -4,10 +4,10 @@
 // Stefan Walther - 05/17/2013
 //
 // FURTHER INFORMATION:
-//      follows soon
+//      http://www.qlikblog.at/2412/
 // ~~
 // DOCUMENTATION:
-//      follows soon
+//      http://www.qlikblog.at/2412/
 // ~~
 // SOURCE CODE:
 //      http://QvExtBCSB.codeplex.com/releases
