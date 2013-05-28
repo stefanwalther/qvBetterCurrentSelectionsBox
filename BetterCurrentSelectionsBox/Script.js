@@ -1,6 +1,7 @@
 ﻿
-//MultiLanguageSelectionBox
-
+// Global PlaceHolder for holding the state of current selections.
+// Must be set global because if there are not changes we will - on update - not get 
+// any results from GetCurrentSelections()
 var gBCSB_Selections = {};
 
 function BetterCurrentSelectionsBox_Init() {
@@ -14,60 +15,73 @@ function BetterCurrentSelectionsBox_Init() {
             _this.ExtSettings.ExtensionName = 'BetterCurrentSelectionsBox';
             _this.ExtSelections = {};
 
+            // On Update Complete: Just set the icon visibility ...
             Qv.GetCurrentDocument().SetOnUpdateComplete(function () {
                 ConsoleInfo("On Update Complete");
                 SetIconVisibility();
             });
 
-                      
+            
+            // Load the desired css files
             var cssFiles = [];
             cssFiles.push('Extensions/' + _this.ExtSettings.ExtensionName + '/lib/css/BetterCurrentSelectionsBox.css');
             for (var i = 0; i < cssFiles.length; i++) {
                 Qva.LoadCSS(Qva.Remote + (Qva.Remote.indexOf('?') >= 0 ? '&' : '?') + 'public=only' + '&name=' + cssFiles[i]);
             }
 
+            // Load the required JavaScript files
             var jsFiles = [];
-            jsFiles.push('Extensions/BetterCurrentSelectionsBox/lib/js/colResizable-1.3.source.js');
-            //jsFiles.push('Extensions/BetterCurrentSelectionsBox/lib/js/ui.js');
+            jsFiles.push('Extensions/' + _this.ExtSettings.ExtensionName + '/lib/js/jquery.swr.js');
             Qv.LoadExtensionScripts(jsFiles, function () {
 
+                ConsoleInfo("Main Extension Code ...");
                 SupportSelectBox();
-                InitSettings();
-                getData();
-                renderSelectionBox();
-                renderSelectionBoxContent();
+                InitSettings();                 // fetch settings
+                getData();                      // retrieve data
+                renderSelectionBox();           // render the selectionbox body
+                renderSelectionBoxContent();    // render the selectionbox content
                 UpdateSelections();
-                ConsoleLog("Finished ...");
+
+                ConsoleInfo("Finished ...");
             });
 
             // Layouting
-
             function SetIconVisibility() {
-                ConsoleLog("Set Icon Visibility");
-                //ConsoleLog(gBCSB_Selections.Rows);
+                ConsoleInfo("Set Icon Visibility");
+
+                // Hide all rows
+                //$(".BCSB_Row").hide();
+
                 if (gBCSB_Selections != undefined && gBCSB_Selections.Rows != undefined) {
                     for (i = 0; i < gBCSB_Selections.Rows.length; i++) {
                         var fieldName = gBCSB_Selections.Rows[i][0].text;
                         var isFieldLocked = gBCSB_Selections.Rows[i][0].locked;
-                        ConsoleLog("Field " + fieldName + " is locked " + isFieldLocked);
+                        ConsoleLog("\tField <" + fieldName + "> is locked: " + isFieldLocked);
 
                         if ($(".BCSB_Row[fieldName='" + fieldName + "']").length > 0) {
+
+                            // Show the row
+                            //$(".BCSB_Row[fieldName='" + fieldName + "']").show();
+
                             var $imgStatus = $(".BCSB_Row[fieldName='" + fieldName + "'] .BCSB_imgStatus");
                             var imgBasePath = $imgStatus.attr("src").substr(0, $imgStatus.attr("src").lastIndexOf("/")) + '/';
                             if (isFieldLocked == 'true') {
-                                ConsoleLog("\tEnable Unlock for field & disable clear " + fieldName);
+                                ConsoleLog("\t\tEnable Unlock for field & disable clear <" + fieldName + ">");
                                 $(".BCSB_divUNLOCKICON[fieldName='" + fieldName + "']").show(0);
                                 $(".BCSB_divLOCKICON[fieldName='" + fieldName + "']").hide(0);
                                 $(".BCSB_divCLEARICON[fieldName='" + fieldName + "']").hide(0);
                                 $imgStatus.attr("src", imgBasePath + 'blue.png');
                             }
                             else {
-                                ConsoleLog("\tEnable Lock & clear for field " + fieldName);
+                                ConsoleLog("\t\tEnable Lock & clear for field <" + fieldName + ">");
                                 $(".BCSB_divUNLOCKICON[fieldName='" + fieldName + "']").hide(0);
                                 $(".BCSB_divLOCKICON[fieldName='" + fieldName + "']").show(0);
                                 $(".BCSB_divCLEARICON[fieldName='" + fieldName + "']").show(0);
                                 $imgStatus.attr("src", imgBasePath + 'green.png');
                             }
+                        }
+                        else {
+                            ConsoleLog("\t\tNothing to do for field <" + fieldName + ">");
                         }
                     }
                 }
@@ -108,24 +122,25 @@ function BetterCurrentSelectionsBox_Init() {
 
             function isHidden(fieldKey)
             {
-                var arrHiddenFields = _this.ExtSettings.HideFields.split(',');
-                if (Array.isArray(arrHiddenFields))
-                {
-                    //ConsoleLog(arrHiddenFields);
-                    //ConsoleLog("indexof " + fieldKey + ": " + arrHiddenFields.indexOf(fieldKey));
-                    if (arrHiddenFields.indexOf(fieldKey) > -1)
+                if (!nullOrEmpty(_this.ExtSettings.HideFields)) {
+                    var arrHiddenFields = _this.ExtSettings.HideFields.split(',');
+                    if (Array.isArray(arrHiddenFields))
                     {
-                        return true;
-                    }
-                }
-                var arrHidePrefixes = _this.ExtSettings.HidePrefixes.split(',');
-                if (Array.isArray(arrHidePrefixes))
-                {
-                    for (var i = 0; i < arrHidePrefixes.length;i++)
-                    {
-                        if (fieldKey.startsWith(arrHidePrefixes[i]))
+                        //ConsoleLog(arrHiddenFields);
+                        //ConsoleLog("indexof " + fieldKey + ": " + arrHiddenFields.indexOf(fieldKey));
+                        if (arrHiddenFields.indexOf(fieldKey) > -1)
                         {
                             return true;
+                        }
+                    }
+                }
+                if (!nullOrEmpty(_this.ExtSettings.HidePrefixes)) {
+                    var arrHidePrefixes = _this.ExtSettings.HidePrefixes.split(',');
+                    if (Array.isArray(arrHidePrefixes)) {
+                        for (var i = 0; i < arrHidePrefixes.length; i++) {
+                            if (fieldKey.startsWith(arrHidePrefixes[i])) {
+                                return true;
+                            }
                         }
                     }
                 }
@@ -137,31 +152,46 @@ function BetterCurrentSelectionsBox_Init() {
             // ------------------------------------------------------------------
             function InitSettings()
             {
+                ConsoleInfo("Init Settings");
+
                 _this.ExtSettings.UniqueId = _this.Layout.ObjectId.replace("\\", "_");
 
-                // Label for "Field" column
-                _this.ExtSettings.LabelField = _this.Layout.Text5.text;
-                
-                // Label for "Values" column
-                _this.ExtSettings.LabelValues = _this.Layout.Text7.text;
-
-
-                _this.ExtSettings.ShowClearIcon = true; //(_this.Layout.Text2.text == '1') ? true : false;
-                _this.ExtSettings.ShowLockIcon = true; //(_this.Layout.Text3.text == '1') ? true : false;
+                _this.ExtSettings.ShowStatus = _this.Layout.Text0.text == '1' ? true : false;
+                _this.ExtSettings.ShowValues = (_this.Layout.Text1.text == '1') ? true : false;
+                _this.ExtSettings.ShowClearIcon = (_this.Layout.Text2.text == '1') ? true : false;
+                _this.ExtSettings.ShowLockIcon = (_this.Layout.Text3.text == '1') ? true : false;
 
                 _this.ExtSettings.IconStyle = _this.Layout.Text4.text;
+                ConsoleLog("\tIcon Style:" + _this.ExtSettings.IconStyle);
 
-                ConsoleLog("HidePrefixes: " + _this.Layout.Text11.text);
+                _this.ExtSettings.LabelField = _this.Layout.Text5.text;
+                _this.ExtSettings.LabelValues = _this.Layout.Text7.text;
+
+                _this.ExtSettings.ShowHeader = _this.Layout.Text6.text == '1' ? true : false;
+
+                // Hide Prefixes
                 _this.ExtSettings.HidePrefixes = _this.Layout.Text11.text;
+                ConsoleLog("\tHidePrefixes:" + _this.ExtSettings.HidePrefixes);
 
-                ConsoleLog("HideFields: " + _this.Layout.Text12.text);
                 _this.ExtSettings.HideFields = _this.Layout.Text12.text;
+                ConsoleLog("\tHideFields: " + _this.ExtSettings.HideFields);
 
-                // Some settings need to be set directly 
-                
+                // Some settings need to be set directly                
+                renderSettings();
+
+            }
+
+            function renderSettings() {
+            	/// <summary>
+                /// Render values which are not re-rendered every time (mainly those which are part of the
+                /// header and not the body of the current selections box)
+            	/// </summary>
+
                 $("#" + _this.ExtSettings.UniqueId + "_FieldHeader").html(_this.ExtSettings.LabelField);
                 $("#" + _this.ExtSettings.UniqueId + "_ValueHeader").html(_this.ExtSettings.LabelValues);
 
+                $("#" + _this.ExtSettings.UniqueId + "_HeaderRow").showHide(_this.ExtSettings.ShowHeader);
+                $("#" + _this.ExtSettings.UniqueId + "_ValueHeader").showHide(_this.ExtSettings.ShowValues);
 
             }
 
@@ -173,6 +203,7 @@ function BetterCurrentSelectionsBox_Init() {
 
             function renderSelectionBox()
             {
+                ConsoleInfo("Render Current Selections Box ...");
                 $(_this.Element).css("overflow", "auto");
                 if ($('#' + _this.ExtSettings.UniqueId + "_Table").length == 0) {
                     var $tblSelectionBox = $(document.createElement("table"));
@@ -183,6 +214,8 @@ function BetterCurrentSelectionsBox_Init() {
 
                     // Header Row
                     var $trHeader = $(document.createElement("tr"));
+                    $trHeader.attr('id', _this.ExtSettings.UniqueId + "_HeaderRow");
+                    $trHeader.showHide(_this.ExtSettings.ShowHeader);
 
                     // Field Column
                     var $thFieldHeader = $(document.createElement("th"));
@@ -212,48 +245,26 @@ function BetterCurrentSelectionsBox_Init() {
                 //ConsoleLog("Config Table ... (Width, Height, etc.)");
                 configTable();
 
-                //ConsoleLog("Set Column Visibility");
-                setColumnVisibility();
-
             }
-
-            //function openCloseStandardSelectionBox() {
-            //    //ConsoleLog("CurrentSelection Box: " + $('#CurrentSelection').length);
-            //    //
-            //    return;
-                
-
-            //    if (!_this.ExtSettings.OpenedStandardSelections) {
-            //        ConsoleLog("Opening the standard selection box");
-            //        var G = {}; G.action = ""; G.position = "";
-            //        Qva.GetBinder("").Set("Document.StandardActions.CS", G);
-            //        Qva.GetBinder("").Send();
-            //        //ConsoleLog("Closing the standard selection box");
-            //        //Qva.GetBinder("").Set("Document.CurrentSelection.CX", G);
-            //        //setTimeout("Qva.GetBinder('').Send('')", 1000);
-            //        //Qva.GetBinder("").Send("");
-            //        _this.ExtSettings.OpenedStandardSelections = true;
-            //    }
-            //}
 
             function renderSelectionBoxContent() {
             	/// <summary>
             	/// Renders the current selections to the selectionbox table.
                 /// </summary>
                 
-                ConsoleLog("Render the SelectionBoxContent ...");
+                ConsoleInfo("Render the SelectionBoxContent ...");
                 
-                var createClearHandler =
-                function (rowNo, fieldName) {
+                var createClearHandler = function (rowNo, fieldName) {
                     return function () {
                         ConsoleLog("Clear Click Handler /row: " + rowNo + "/field: " + fieldName);
                         var G = {}; G.action = ""; G.position = "0:" + rowNo + ":Body";
 
-                        // Search for any current selectionbox
+                        // Search for any current selectionbox on the current sheet
                         var m = recurParseManagers('null', 'Document\\CS', null);
                         ConsoleLog("Current SelectionBox Index:" + m);
                         if (m != null)
                         {
+                            ConsoleInfo("Send PageBinder Clear command ...");
                             Qva.GetBinder("").Set(m + ".CD", G);
                             Qva.GetBinder("").Send("");
                         }
@@ -264,8 +275,7 @@ function BetterCurrentSelectionsBox_Init() {
                     };
                 };
 
-                var createLockHandler = 
-                function (rowNo, fieldName) {
+                var createLockHandler = function (rowNo, fieldName) {
                     return function () {
                         ConsoleLog("Lock Click Handler /row: " + rowNo + "/field: " + fieldName);
 
@@ -283,8 +293,7 @@ function BetterCurrentSelectionsBox_Init() {
                     };
                 };
 
-                var createUnLockHandler =
-                function (rowNo, fieldName) {
+                var createUnLockHandler = function (rowNo, fieldName) {
                     return function () {
                         ConsoleLog("UnLock Click Handler /row: " + rowNo + "/field: " + fieldName);
                         var G = {}; G.action = ""; G.position = "0:" + rowNo + ":Body";
@@ -384,13 +393,16 @@ function BetterCurrentSelectionsBox_Init() {
 
                             $tr.append($tdFieldName);
 
+                            // Field Values
                             var $tdFieldValues = $(document.createElement("td"));
                             setProps($tdFieldValues, _this);
                             var $imgStatus = $(document.createElement("img"));
                             $imgStatus.addClass("BCSB_imgStatus");
                             $imgStatus.attr("src", imageBasePath + 'green.png');
+                            $imgStatus.showHide(_this.ExtSettings.ShowStatus);
                             $tdFieldValues.append($imgStatus);
                             $tdFieldValues.append(_this.ExtSelections[r].Values.join(','));
+                            $tdFieldValues.showHide(_this.ExtSettings.ShowValues);
                             $tr.append($tdFieldValues);
 
                             $tableBodyNew.append($tr);
@@ -408,6 +420,7 @@ function BetterCurrentSelectionsBox_Init() {
             //#endregion
 
             
+            //#region Update Selections
             function UpdateSelections() {
             	/// <summary>
                 /// Fetches the current selections and updates the status of icons and
@@ -430,17 +443,17 @@ function BetterCurrentSelectionsBox_Init() {
                     {
                         onChange: function () {
                             var data = this.Data.Rows;
-                            ConsoleLog("Data returned from GetCurrentSelections");
+                            ConsoleInfo("Data returned from GetCurrentSelections");
                             ConsoleLog(this.Data.Rows);
-                            ConsoleLog('--');
                             gBCSB_Selections = this.Data;
                         },
                         fields: [fields]
                     };
-                    ConsoleLog("Retrieve the current selections to config lock/unlock icons");
+                    ConsoleInfo("Retrieve the current selections to config lock/unlock icons");
                     Qv.GetCurrentDocument().GetCurrentSelections(currentSelectionOptions);
                 }
             }
+            ///#endregion
 
             function configTable()
             {
@@ -460,18 +473,62 @@ function BetterCurrentSelectionsBox_Init() {
                 }
             }
 
-            function setColumnVisibility()
-            {
-                var body = $("#" + _this.ExtSettings.UniqueId + "_Content");
+            
+            // ------------------------------------------------------------------
+            // Extension Helper
+            // ------------------------------------------------------------------
+            function SupportSelectBox() {
+                /// <summary>
+                /// Bugfixes the issue with select boxes on the property page.
+                /// </summary>
+                /// <remarks>
+                /// Just place this code to the extensio page and everything will work fine.
+                /// </remarks>
 
+                if (Qva.Mgr.mySelect == undefined) {
+                    Qva.Mgr.mySelect = function (owner, elem, name, prefix) {
+                        if (!Qva.MgrSplit(this, name, prefix)) return;
+                        owner.AddManager(this);
+                        this.Element = elem;
+                        this.ByValue = true;
 
+                        elem.binderid = owner.binderid;
+                        elem.Name = this.Name;
+
+                        elem.onchange = Qva.Mgr.mySelect.OnChange;
+                        elem.onclick = Qva.CancelBubble;
+                    }
+                    Qva.Mgr.mySelect.OnChange = function () {
+                        var binder = Qva.GetBinder(this.binderid);
+                        if (!binder.Enabled) return;
+                        if (this.selectedIndex < 0) return;
+                        var opt = this.options[this.selectedIndex];
+                        binder.Set(this.Name, 'text', opt.value, true);
+                    }
+                    Qva.Mgr.mySelect.prototype.Paint = function (mode, node) {
+                        this.Touched = true;
+                        var element = this.Element;
+                        var currentValue = node.getAttribute("value");
+                        if (currentValue == null) currentValue = "";
+                        var optlen = element.options.length;
+                        element.disabled = mode != 'e';
+                        //element.value = currentValue;
+                        for (var ix = 0; ix < optlen; ++ix) {
+                            if (element.options[ix].value === currentValue) {
+                                element.selectedIndex = ix;
+                            }
+                        }
+                        element.style.display = Qva.MgrGetDisplayFromMode(this, mode);
+                    }
+                }
             }
 
-            
 
             // ------------------------------------------------------------------
             // Basic table Rendering
             // ------------------------------------------------------------------
+
+
             function renderTable() {
 
                 var createClickHandler =
@@ -569,46 +626,7 @@ function BetterCurrentSelectionsBox_Init() {
                 return ret;
             }
 
-            function SupportSelectBox() {
-
-                if (Qva.Mgr.mySelect == undefined) {
-                    Qva.Mgr.mySelect = function (owner, elem, name, prefix) {
-                        if (!Qva.MgrSplit(this, name, prefix)) return;
-                        owner.AddManager(this);
-                        this.Element = elem;
-                        this.ByValue = true;
-
-                        elem.binderid = owner.binderid;
-                        elem.Name = this.Name;
-
-                        elem.onchange = Qva.Mgr.mySelect.OnChange;
-                        elem.onclick = Qva.CancelBubble;
-                    }
-                    Qva.Mgr.mySelect.OnChange = function () {
-                        var binder = Qva.GetBinder(this.binderid);
-                        if (!binder.Enabled) return;
-                        if (this.selectedIndex < 0) return;
-                        var opt = this.options[this.selectedIndex];
-                        binder.Set(this.Name, 'text', opt.value, true);
-                    }
-                    Qva.Mgr.mySelect.prototype.Paint = function (mode, node) {
-                        this.Touched = true;
-                        var element = this.Element;
-                        var currentValue = node.getAttribute("value");
-                        if (currentValue == null) currentValue = "";
-                        var optlen = element.options.length;
-                        element.disabled = mode != 'e';
-                        //element.value = currentValue;
-                        for (var ix = 0; ix < optlen; ++ix) {
-                            if (element.options[ix].value === currentValue) {
-                                element.selectedIndex = ix;
-                            }
-                        }
-                        element.style.display = Qva.MgrGetDisplayFromMode(this, mode);
-
-                    }
-                }
-            }
+            
 
             function setProps($obj, parentObj) {
 
@@ -641,6 +659,21 @@ function BetterCurrentSelectionsBox_Init() {
                     console.info(msg);
                 }
             }
+            function ConsoleError(msg) {
+                if (typeof console != "undefined") {
+                    console.error(msg);
+                }
+            }
+            function ConsoleWarn(msg) {
+                if (typeof console != "undefined") {
+                    console.warn(msg);
+                }
+            }
+            function ConsoleClear() {
+                if (typeof console != "undefined") {
+                    console.clear();
+                }
+            }
 
             // Basic Helper functions
             function nullOrEmpty(obj) {
@@ -650,10 +683,13 @@ function BetterCurrentSelectionsBox_Init() {
                 return false;
             }
 
+            // String extension
             String.prototype.startsWith = function(s)
             {
                 return(this.indexOf(s) == 0);
             };
+
+            
 
 
 

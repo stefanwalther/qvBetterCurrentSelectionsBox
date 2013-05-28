@@ -133,6 +133,12 @@
     <Content Include="lib\js\Definition.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="lib\js\jquery.swr.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="lib\js\SupportSelectBox.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="lib\js\ui.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -153,6 +159,7 @@
   <ItemGroup>
     <Content Include="BetterCurrentSelectionsBox.qvpp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -20,7 +20,7 @@
 /* Field Column*/
 .BCSB_FieldCol {
     padding-right:5px;
-    /*display:inline-block;*/
+    white-space:nowrap;
 }
 
 /* Property Dialog */
@@ -33,18 +33,18 @@
 
 /* Icon fields */
 .BCSB_divCLEARICON {
-    display:inline-block;
+    display:inline;
 }
 
 .BCSB_divUNLOCKICON {
     width:16px;
     text-align:center;
-    display:inline-block;
+    display:inline;
 }
 .BCSB_divLOCKICON {
     width:16px;
     text-align:center;
-    display:inline-block;
+    display:inline;
 }
 
 .BCSB_imgStatus {
