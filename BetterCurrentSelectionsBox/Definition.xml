@@ -3,14 +3,19 @@
 
   <PropertiesPage Version="11" File="BetterCurrentSelectionsBox.qvpp" />
 
-  <Initiate Name="Chart.Text.5.Content" Value="Feld" />
-  <Initiate Name="Chart.Text.11.Content" Value="_,#,%"/>
-  <Initiate Name="Chart.Text.12.Content" Value="Languages" />
+  <Initiate Name="Chart.Text.0.Content" Value="1" />
+  <Initiate Name="Chart.Text.1.Content" Value="1" />
+  <Initiate Name="Chart.Text.2.Content" Value="1" />
+  <Initiate Name="Chart.Text.3.Content" Value="1" />
+  <Initiate Name="Chart.Text.4.Content" Value="classic" />
+  <Initiate Name="Chart.Text.5.Content" Value="Field" />
+  <Initiate Name="Chart.Text.6.Content" Value="1" />
+  <Initiate Name="Chart.Text.7.Content" Value="Values" />
+  <!--<Initiate Name="Chart.Text.11.Content" Value="_,#,%"/>-->
+  <!--<Initiate Name="Chart.Text.12.Content" Value="Languages" />-->
   <Initiate Name="Chart.Dimension.0.Field" Value="FieldName" />
   <Initiate Name="Chart.Expression.0.0.Definition" Value="=Only($(=vSelectedLangKey))" />
   <Initiate Name="Caption.Text" Value="Current Selections" />
-  <Initiate Name="Chart.Text.2" Value="1" />
-  <Initiate name="Chart.Text.3" Value="1" />
   
   <Dimension Label="Fields" TargetName="Dimension Name" Initial="FieldName" />
   <Measurement Label="Expression"  Initial="Only($(=vSelectedLangKey))" />
@@ -28,17 +33,16 @@
   <Text Label="Show Lock/Unlock Icons" type="checkbox"></Text>
 
   <!-- 4 -->
-  <!--<Text Label="Icon Set" Type="select" Select="classic,flat" SelectLabel="Classic,Flat" Expression=""/>-->
   <Text Label="IconSet" type="select" Select="classic,flat,batch,batchgray,eldorado,eldoradogray" SelectLabel="QlikView Classic,QlikView Flat,Batch,Batch Gray,Eldorado,Eldorado Gray"></Text>
   
   <!-- 5 -->
-  <Text Label="Fields" type="text"></Text>
+  <Text Label="Label Fields" type="text"></Text>
   
   <!-- 6 -->
-  <Text Label="Status" type="text"></Text>
+  <Text Label="Show Header" type="checkbox"></Text>
   
   <!-- 7 -->
-  <Text Label="Values" type="text"></Text>
+  <Text Label="Label Values" type="text"></Text>
 
   <!-- 8 -->
   <Text Label="Label Background" type="color"></Text>
