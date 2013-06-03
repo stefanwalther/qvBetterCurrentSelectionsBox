@@ -45,6 +45,8 @@ function BetterCurrentSelectionsBox_Init() {
                 ConsoleInfo("Finished ...");
             });
 
+
+
             // Layouting
             function SetIconVisibility() {
                 ConsoleInfo("Set Icon Visibility");

@@ -1,1 +1,4 @@
 ﻿// http://jqueryui.com/resizable/#textarea
+
+
+//https://github.com/dobtco/jquery-resizable-columns
