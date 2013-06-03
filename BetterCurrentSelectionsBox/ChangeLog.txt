@@ -1,2 +1,6 @@
-﻿===== v1.0.0 - 05/16/2013 =====
+﻿===== v1.0.1 - 06/03/2013 =====
+* Added: Support for resizing column headers
+
+===== v1.0.0 - 05/16/2013 =====
 * Release: Initial Release v1.0.0
+

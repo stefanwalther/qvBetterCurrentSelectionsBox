@@ -25,6 +25,7 @@ function BetterCurrentSelectionsBox_Init() {
             // Load the desired css files
             var cssFiles = [];
             cssFiles.push('Extensions/' + _this.ExtSettings.ExtensionName + '/lib/css/BetterCurrentSelectionsBox.css');
+            cssFiles.push('Extensions/' + _this.ExtSettings.ExtensionName + '/lib/css/jquery.resizableColumns.css');
             for (var i = 0; i < cssFiles.length; i++) {
                 Qva.LoadCSS(Qva.Remote + (Qva.Remote.indexOf('?') >= 0 ? '&' : '?') + 'public=only' + '&name=' + cssFiles[i]);
             }
@@ -32,6 +33,7 @@ function BetterCurrentSelectionsBox_Init() {
             // Load the required JavaScript files
             var jsFiles = [];
             jsFiles.push('Extensions/' + _this.ExtSettings.ExtensionName + '/lib/js/jquery.swr.js');
+            jsFiles.push('Extensions/' + _this.ExtSettings.ExtensionName + '/lib/js/jquery.resizableColumns.min.js');
             Qv.LoadExtensionScripts(jsFiles, function () {
 
                 ConsoleInfo("Main Extension Code ...");
@@ -212,6 +214,9 @@ function BetterCurrentSelectionsBox_Init() {
                     $tblSelectionBox.attr("id", _this.ExtSettings.UniqueId + "_Table");
                     $tblSelectionBox.addClass("tblBetterCurrentSelectionsBox");
 
+                    // Resizable Support
+                    $tblSelectionBox.attr('data-resizable-columns-id', _this.ExtSettings.UniqueId);
+
                     var $theadHeader = $(document.createElement("thead"));
 
                     // Header Row
@@ -222,6 +227,7 @@ function BetterCurrentSelectionsBox_Init() {
                     // Field Column
                     var $thFieldHeader = $(document.createElement("th"));
                     $thFieldHeader.attr("id", _this.ExtSettings.UniqueId + "_FieldHeader");
+                    $thFieldHeader.attr('data-resizable-column-id', $thFieldHeader.attr('id'));
                     $thFieldHeader.html(_this.ExtSettings.LabelField);
                     setProps($thFieldHeader, _this);
                     $trHeader.append($thFieldHeader);
@@ -229,6 +235,7 @@ function BetterCurrentSelectionsBox_Init() {
                     // Value Header
                     var $thValueHeader = $(document.createElement("th"));
                     $thValueHeader.attr("id", _this.ExtSettings.UniqueId + "_ValueHeader");
+                    $thValueHeader.attr('data-resizable-column-id', $thValueHeader.attr('id'));
                     $thValueHeader.html(_this.ExtSettings.LabelValues);
                     $thValueHeader.css("width", "60%");
                     setProps($thValueHeader, _this);
@@ -242,6 +249,8 @@ function BetterCurrentSelectionsBox_Init() {
                     $tblSelectionBox.append($tbodyContent);
 
                     $(_this.Element).append($tblSelectionBox);
+
+                    $tblSelectionBox.resizableColumns();
                     
                 }
                 //ConsoleLog("Config Table ... (Width, Height, etc.)");
