@@ -229,6 +229,7 @@ function BetterCurrentSelectionsBox_Init() {
                     $thFieldHeader.attr("id", _this.ExtSettings.UniqueId + "_FieldHeader");
                     $thFieldHeader.attr('data-resizable-column-id', $thFieldHeader.attr('id'));
                     $thFieldHeader.html(_this.ExtSettings.LabelField);
+                    $thFieldHeader.css("width", "30%");
                     setProps($thFieldHeader, _this);
                     $trHeader.append($thFieldHeader);
 
@@ -237,7 +238,7 @@ function BetterCurrentSelectionsBox_Init() {
                     $thValueHeader.attr("id", _this.ExtSettings.UniqueId + "_ValueHeader");
                     $thValueHeader.attr('data-resizable-column-id', $thValueHeader.attr('id'));
                     $thValueHeader.html(_this.ExtSettings.LabelValues);
-                    $thValueHeader.css("width", "60%");
+                    //$thValueHeader.css("width", "60%");
                     setProps($thValueHeader, _this);
                     $trHeader.append($thValueHeader);
 
@@ -249,9 +250,7 @@ function BetterCurrentSelectionsBox_Init() {
                     $tblSelectionBox.append($tbodyContent);
 
                     $(_this.Element).append($tblSelectionBox);
-
-                    $tblSelectionBox.resizableColumns();
-                    
+                   
                 }
                 //ConsoleLog("Config Table ... (Width, Height, etc.)");
                 configTable();
@@ -482,6 +481,9 @@ function BetterCurrentSelectionsBox_Init() {
                     //    disable: false
                     //});
                 }
+                $(function () {
+                    $('#' + _this.ExtSettings.UniqueId + "_Table").resizableColumns();
+                });
             }
 
             

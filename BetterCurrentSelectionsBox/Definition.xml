@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ExtensionObject Label="Better Current Selections Box" Path="BetterCurrentSelectionsBox" Description="An improved current selections box." Type="object">
+<ExtensionObject Label="Better Current Selections Box" Path="BetterCurrentSelectionsBox" Description="An improved current selections box." Type="object" PageHeight="500" PageWidth="50">
 
   <PropertiesPage Version="11" File="BetterCurrentSelectionsBox.qvpp" />
 
