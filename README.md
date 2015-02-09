@@ -9,9 +9,13 @@
 
 You have probably realized that these requirements are not that easy to meet. So enough reasons for creating this solution.
 
-## Project Page
+## Download & Info
 
-http://www.qlikblog.at/2412
+## Project Page & Demo
+
+* Further information: http://www.qlikblog.at/2412
+* Latest version: 
+* Demo App: [https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/gh-pages/demo/BetterCurrentSelectionsBox_App_v1.0.qvw](https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/gh-pages/demo/BetterCurrentSelectionsBox_App_v1.0.qvw "download here")
 
 ## Features
 
