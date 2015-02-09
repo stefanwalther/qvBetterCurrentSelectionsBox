@@ -1,7 +1,7 @@
 **Better Current SelectionsBox for QlikView** is licensed under the MIT License:
 
-* [License](#License)
-* [External Libraries](#External Libraries)
+* [License](#license)
+* [External Libraries](#external-libraries)
 
 ## License
 
