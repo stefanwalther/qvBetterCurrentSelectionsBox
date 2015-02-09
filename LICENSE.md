@@ -1,7 +1,7 @@
 **Better Current SelectionsBox for QlikView** is licensed under the MIT License:
 
-* [License](License)
-* [External Libraries](External Libraries)
+* [License](#license)
+* [External Libraries](#external-libraries)
 
 ## License
 
@@ -28,3 +28,9 @@
 
 ## External Libraries
 
+**Extension Icon**
+* "Batch Icons" by Adam Whitcroft (http://adamwhitcroft.com/batch/)
+
+**Icon Sets for Current Selections Box**
+* "Batch Icons" by Adam Whitcroft (http://adamwhitcroft.com/batch/)
+* "Eldorado Mini Icons" by Icojam (http://www.icojam.com)

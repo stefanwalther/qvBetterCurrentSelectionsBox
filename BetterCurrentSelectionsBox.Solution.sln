@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterCurrentSelectionsBox"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linked Items", "Linked Items", "{28561F2C-B812-4A6C-8706-EDC536AA0D9F}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGES.md = CHANGES.md
+		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
 EndProject
