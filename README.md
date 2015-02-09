@@ -14,8 +14,8 @@ You have probably realized that these requirements are not that easy to meet. So
 ## Project Page & Demo
 
 * Further information: http://www.qlikblog.at/2412
-* Latest version: 
-* Demo App: [https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/gh-pages/demo/BetterCurrentSelectionsBox_App_v1.0.qvw](https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/gh-pages/demo/BetterCurrentSelectionsBox_App_v1.0.qvw "download here")
+* [Latest version](https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/master/build/BetterCurrentSelectionsBox_Latest.qar) (.qar file)
+* [Demo QlikView App](https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/gh-pages/demo/BetterCurrentSelectionsBox_App_v1.0.qvw)
 
 ## Features
 
