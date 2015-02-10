@@ -6,7 +6,8 @@ module.exports = function ( grunt ) {
     return {
         release: {
             options: {
-                archive: '../build/BetterCurrentSelectionsBox_v<%=projectConfig.extensionVersion%>.zip'
+                archive: '../build/BetterCurrentSelectionsBox_v<%=projectConfig.extensionVersion%>.qar',
+                mode: 'zip'
             },
             files: [
                 {
