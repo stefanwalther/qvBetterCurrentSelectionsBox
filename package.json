@@ -1,0 +1,25 @@
+{
+  "name": "qvBetterCurrentSelectionsBox",
+  "version": "1.0.2",
+  "description": "\"Better Current Selections Box\" is an advanced selection box for QlikView with the ability to hide and translate fields and to select different icons.",
+  "main": "-",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefanwalther/qvBetterCurrentSelectionsBox.git"
+  },
+  "keywords": [
+    "qlikview-object-extension",
+    "QlikView",
+    "extension",
+    "Qlik"
+  ],
+  "author": "Stefan Walther",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/issues"
+  },
+  "homepage": "https://github.com/stefanwalther/qvBetterCurrentSelectionsBox"
+}
