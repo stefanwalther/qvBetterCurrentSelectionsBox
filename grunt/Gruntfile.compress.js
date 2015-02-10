@@ -17,6 +17,20 @@ module.exports = function ( grunt ) {
                     dest: '../build/'
                 }
             ]
+        },
+        release_latest: {
+            options: {
+                archive: '../build/BetterCurrentSelectionsBox_latest.qar',
+                mode: 'zip'
+            },
+            files: [
+                {
+                    expand: true,
+                    cwd: '../dist/',
+                    src: ['**'],
+                    dest: '../build/'
+                }
+            ]
         }
     };
 };
