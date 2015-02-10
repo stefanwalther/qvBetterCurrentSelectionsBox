@@ -1,9 +1,9 @@
-# qvBetterCurrentSelectionsBox
+# QlikView Extension - Better Current Selections Box (Hiding/Translating Fields)
 **_Better Current Selections Box_** is an advanced selection box for QlikView with the ability to hide and translate fields and to select different icons.
 
 ## Purpose and Description
 * Did you ever want to translate fields in the _Current SelectionBox_ in QlikView?
-* Did you ever want to hide fields beyond those with the prefix defined in `SET HidePrefix = '%';` in your _Current SelectionBox_?
+* Did you ever want to hide fields beyond those with the prefix defined in _SET HidePrefix = '%';_ in your _Current SelectionBox_?
 * Did you ever want to display different icons than the _out of the box_ icons?
 * etc.
 
