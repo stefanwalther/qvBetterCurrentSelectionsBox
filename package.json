@@ -14,7 +14,8 @@
     "qlikview-object-extension",
     "QlikView",
     "extension",
-    "Qlik"
+    "Qlik",
+    "Better CurrentSelections Box"
   ],
   "author": "Stefan Walther",
   "license": "MIT",
