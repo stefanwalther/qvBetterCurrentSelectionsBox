@@ -43,7 +43,7 @@ You can modify the appearance of the icons shown in the _Better Current Selectio
 
 ## Release History
 
-See [Changes.md](Changes.md)
+See [Changes.md](CHANGES.md)
 
 ## Contributing
 
@@ -57,7 +57,7 @@ I cannot guarantee that I will merge all PRs but I will evaluate them all.
 
 ## License
 
-See [License.md](License.md)
+See [License.md](LICENSE.md)
 
 ## Authors
 
