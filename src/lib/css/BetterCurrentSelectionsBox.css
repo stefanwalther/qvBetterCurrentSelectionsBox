@@ -1,0 +1,60 @@
+﻿
+.tblBetterCurrentSelectionsBox {
+    width:95%;
+
+    /*border-width:1px;
+    border-style:solid;
+    border-color:#ccc;*/
+
+}
+
+.tblBetterCurrentSelectionsBox thead tr th {
+    font-weight:bold;
+    background-color:#F8F8F8;
+    text-align:left;
+}
+
+.tblBetterCurrentSelectionsBox tbody tr td {
+}
+
+/* Field Column*/
+.BCSB_FieldCol {
+    padding-right:5px;
+    white-space:nowrap;
+}
+
+/* Property Dialog */
+.BCSB_SelectBox {
+    padding: 2px 2px 2px 2px;
+}
+
+/* Icon fields */
+.BCSB_divCLEARICON {
+    display:inline;
+}
+
+.BCSB_divUNLOCKICON {
+    width:16px;
+    text-align:center;
+}
+.BCSB_divLOCKICON {
+    width:16px;
+    text-align:center;
+}
+
+.BCSB_imgStatus {
+    width:10px;
+    height:10px;
+    display:inline-block;
+    margin-right:5px;
+    vertical-align:middle;
+}
+
+
+.divRightAligned {
+    float:right;
+    margin-left:2px;
+    margin-right:2px;
+    cursor:pointer;
+    cursor:hand;
+}

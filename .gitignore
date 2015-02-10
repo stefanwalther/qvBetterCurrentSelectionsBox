@@ -1,6 +1,7 @@
 Resources/
 QVJSApi_Test/
 web.*.config
+/**/grunt/node_modules/
 
 #https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 

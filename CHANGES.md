@@ -1,4 +1,4 @@
-# ChangeLog
+# Change Log
 ﻿
 ## v1.0.2
 Date: 2013-09-07 
