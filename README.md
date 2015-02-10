@@ -11,8 +11,6 @@ You have probably realized that these requirements are not that easy to meet. So
 
 ## Download & Info
 
-## Project Page & Demo
-
 * Further information: http://www.qlikblog.at/2412
 * [Latest version](https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/master/build/BetterCurrentSelectionsBox_Latest.qar) (.qar file)
 * [Demo QlikView App](https://github.com/stefanwalther/qvBetterCurrentSelectionsBox/raw/gh-pages/demo/BetterCurrentSelectionsBox_App_v1.0.qvw)
@@ -48,6 +46,14 @@ You can modify the appearance of the icons shown in the _Better Current Selectio
 See [Changes.md](Changes.md)
 
 ## Contributing
+
+Contributing to this project is welcome. The process to do so is outlined below:
+
+1. Create a fork of the project
+2. Work on whatever bug or feature you wish
+3. Create a pull request (PR)
+
+I cannot guarantee that I will merge all PRs but I will evaluate them all.
 
 ## License
 
