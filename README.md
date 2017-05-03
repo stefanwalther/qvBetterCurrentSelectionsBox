@@ -1,4 +1,6 @@
 # QlikView Extension - Better Current Selections Box (Hiding/Translating Fields)
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/stefanwalther/qvBetterCurrentSelectionsBox.svg)](https://greenkeeper.io/)
 **_Better Current Selections Box_** is an advanced selection box for QlikView with the ability to hide and translate fields and to select different icons.
 
 ## Purpose and Description
